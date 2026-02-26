@@ -1,4 +1,11 @@
-# Hospital Management System (DBMS Demo)
+# Hospital Management System (DBMS)
+
+<div style="display:flex;">
+<img src = "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/ba78912c-9d80-459e-9005-c7388688258f.png" heigth="400" width="200">
+<img src = "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/78f31c17-ce32-48db-9bbc-9fa97ed96817.png" heigth="400" width="200">
+<img src = "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/3ed25e56-181b-4872-be0c-5d9586d7854e.png" heigth="400" width="200">
+<img src = "https://pub-1407f82391df4ab1951418d04be76914.r2.dev/uploads/86b9efb7-1ec3-4294-8954-000b3d921d13.png" heigth="400" width="200">
+</div>
 
 This project demonstrates core DBMS concepts with a Hospital domain using Node.js, Express, MongoDB, Mongoose, and EJS.
 
@@ -27,21 +34,33 @@ This project demonstrates core DBMS concepts with a Hospital domain using Node.j
 
 ## Setup
 
-1. Install dependencies:
+1. Clone the repository:
+   
+```bash
+git clone https://github.com/your-username/hospital-management-system.git
+```
+
+2. Navigate to the project folder:
+   
+```bash
+cd hospital-management-system
+```
+
+4. Install dependencies:
 
 ```bash
 npm install
 ```
 
-2. Create environment file:
+4. Create environment file:
 
 ```bash
 copy .env.example .env
 ```
 
-3. Update `.env` values, especially `MONGO_URI` and `JWT_SECRET`.
+5. Update `.env` values, especially `MONGO_URI` and `JWT_SECRET`.
 
-4. Start app:
+6. Start app:
 
 ```bash
 npm run dev
