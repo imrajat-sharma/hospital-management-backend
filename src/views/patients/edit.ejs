@@ -1,0 +1,34 @@
+<h1>Edit Patient</h1>
+
+<form action="/patients/edit/<%= patient._id %>" method="POST">
+  <div class="mb-3">
+    <label class="form-label">Name</label>
+    <input type="text" name="name" class="form-control" value="<%= patient.name %>" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Age</label>
+    <input type="number" min="0" name="age" class="form-control" value="<%= patient.age || '' %>">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Gender</label>
+    <select name="gender" class="form-control">
+      <option value="">Select</option>
+      <option value="male" <%= patient.gender === 'male' ? 'selected' : '' %>>Male</option>
+      <option value="female" <%= patient.gender === 'female' ? 'selected' : '' %>>Female</option>
+      <option value="other" <%= patient.gender === 'other' ? 'selected' : '' %>>Other</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Phone</label>
+    <input type="text" name="phone" class="form-control" value="<%= patient.phone || '' %>">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Address</label>
+    <textarea name="address" class="form-control"><%= patient.address || '' %></textarea>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Blood Group</label>
+    <input type="text" name="bloodGroup" class="form-control" value="<%= patient.bloodGroup || '' %>">
+  </div>
+  <button type="submit" class="btn btn-primary">Update Patient</button>
+</form>

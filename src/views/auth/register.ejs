@@ -1,0 +1,28 @@
+<h1>Register User</h1>
+<% if (typeof error !== 'undefined') { %>
+  <div class="alert alert-danger"><%= error %></div>
+<% } %>
+
+<form action="/auth/register" method="POST">
+  <div class="mb-3">
+    <label class="form-label">Name</label>
+    <input type="text" name="name" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Email</label>
+    <input type="email" name="email" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Password</label>
+    <input type="password" name="password" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Role</label>
+    <select name="role" class="form-control">
+      <option value="admin">Admin</option>
+      <option value="doctor">Doctor</option>
+      <option value="receptionist">Receptionist</option>
+    </select>
+  </div>
+  <button class="btn btn-primary" type="submit">Register</button>
+</form>

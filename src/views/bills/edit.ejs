@@ -1,0 +1,47 @@
+<h1>Edit Bill</h1>
+
+<form action="/bills/edit/<%= bill._id %>" method="POST">
+  <div class="mb-3">
+    <label class="form-label">Patient</label>
+    <select name="patient" class="form-control" required>
+      <% patients.forEach(patient => { %>
+        <option value="<%= patient._id %>" <%= patient._id.toString() === bill.patient.toString() ? 'selected' : '' %>>
+          <%= patient.name %>
+        </option>
+      <% }) %>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Appointment (Optional)</label>
+    <select name="appointment" class="form-control">
+      <option value="">No appointment</option>
+      <% appointments.forEach(item => { %>
+        <option value="<%= item._id %>" <%= bill.appointment && item._id.toString() === bill.appointment.toString() ? 'selected' : '' %>>
+          <%= new Date(item.appointmentDate).toLocaleDateString() %> -
+          <%= item.patient?.name || '-' %> with <%= item.doctor?.name || '-' %>
+        </option>
+      <% }) %>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Amount</label>
+    <input type="number" min="0" step="0.01" name="amount" class="form-control" value="<%= bill.amount %>" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Payment Status</label>
+    <select name="paymentStatus" class="form-control">
+      <option value="pending" <%= bill.paymentStatus === 'pending' ? 'selected' : '' %>>Pending</option>
+      <option value="paid" <%= bill.paymentStatus === 'paid' ? 'selected' : '' %>>Paid</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Payment Method</label>
+    <select name="paymentMethod" class="form-control">
+      <option value="" <%= !bill.paymentMethod ? 'selected' : '' %>>Select</option>
+      <option value="cash" <%= bill.paymentMethod === 'cash' ? 'selected' : '' %>>Cash</option>
+      <option value="card" <%= bill.paymentMethod === 'card' ? 'selected' : '' %>>Card</option>
+      <option value="upi" <%= bill.paymentMethod === 'upi' ? 'selected' : '' %>>UPI</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Update Bill</button>
+</form>

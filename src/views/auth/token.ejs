@@ -1,0 +1,10 @@
+<h1>JWT Generated</h1>
+<p>User: <strong><%= user.email %></strong> (<%= user.role %>)</p>
+
+<div class="alert alert-info">
+  Use this token in the <code>Authorization</code> header for protected routes.
+</div>
+
+<pre class="bg-light p-3 border rounded"><%= token %></pre>
+
+<p class="mt-2 mb-0">Example protected endpoint: <code>GET /auth/me</code></p>

@@ -1,0 +1,46 @@
+<h1>Create Bill</h1>
+
+<form action="/bills" method="POST">
+  <div class="mb-3">
+    <label class="form-label">Patient</label>
+    <select name="patient" class="form-control" required>
+      <option value="">Select Patient</option>
+      <% patients.forEach(patient => { %>
+        <option value="<%= patient._id %>"><%= patient.name %></option>
+      <% }) %>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Appointment (Optional)</label>
+    <select name="appointment" class="form-control">
+      <option value="">No appointment</option>
+      <% appointments.forEach(item => { %>
+        <option value="<%= item._id %>">
+          <%= new Date(item.appointmentDate).toLocaleDateString() %> -
+          <%= item.patient?.name || '-' %> with <%= item.doctor?.name || '-' %>
+        </option>
+      <% }) %>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Amount</label>
+    <input type="number" min="0" step="0.01" name="amount" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Payment Status</label>
+    <select name="paymentStatus" class="form-control">
+      <option value="pending">Pending</option>
+      <option value="paid">Paid</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Payment Method</label>
+    <select name="paymentMethod" class="form-control">
+      <option value="">Select</option>
+      <option value="cash">Cash</option>
+      <option value="card">Card</option>
+      <option value="upi">UPI</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Create Bill</button>
+</form>

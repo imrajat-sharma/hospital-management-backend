@@ -1,0 +1,32 @@
+<h1>Appointments</h1>
+<a href="/appointments/create" class="btn btn-success mb-3">Create Appointment</a>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Doctor</th>
+      <th>Patient</th>
+      <th>Status</th>
+      <th>Notes</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% appointments.forEach(item => { %>
+      <tr>
+        <td><%= new Date(item.appointmentDate).toLocaleString() %></td>
+        <td><%= item.doctor?.name || '-' %></td>
+        <td><%= item.patient?.name || '-' %></td>
+        <td><%= item.status %></td>
+        <td><%= item.notes || '-' %></td>
+        <td>
+          <a href="/appointments/edit/<%= item._id %>" class="btn btn-warning btn-sm">Edit</a>
+          <form action="/appointments/delete/<%= item._id %>" method="POST" style="display:inline;">
+            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>

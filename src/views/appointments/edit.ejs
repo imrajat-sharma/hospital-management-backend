@@ -1,0 +1,47 @@
+<h1>Edit Appointment</h1>
+
+<form action="/appointments/edit/<%= appointment._id %>" method="POST">
+  <div class="mb-3">
+    <label class="form-label">Doctor</label>
+    <select name="doctor" class="form-control" required>
+      <% doctors.forEach(doctor => { %>
+        <option value="<%= doctor._id %>" <%= doctor._id.toString() === appointment.doctor.toString() ? 'selected' : '' %>>
+          <%= doctor.name %> (<%= doctor.specialization %>)
+        </option>
+      <% }) %>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Patient</label>
+    <select name="patient" class="form-control" required>
+      <% patients.forEach(patient => { %>
+        <option value="<%= patient._id %>" <%= patient._id.toString() === appointment.patient.toString() ? 'selected' : '' %>>
+          <%= patient.name %>
+        </option>
+      <% }) %>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Appointment Date</label>
+    <input
+      type="datetime-local"
+      name="appointmentDate"
+      class="form-control"
+      value="<%= new Date(appointment.appointmentDate.getTime() - appointment.appointmentDate.getTimezoneOffset()*60000).toISOString().slice(0,16) %>"
+      required
+    >
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Status</label>
+    <select name="status" class="form-control">
+      <option value="scheduled" <%= appointment.status === 'scheduled' ? 'selected' : '' %>>Scheduled</option>
+      <option value="completed" <%= appointment.status === 'completed' ? 'selected' : '' %>>Completed</option>
+      <option value="cancelled" <%= appointment.status === 'cancelled' ? 'selected' : '' %>>Cancelled</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Notes</label>
+    <textarea name="notes" class="form-control"><%= appointment.notes || '' %></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Update Appointment</button>
+</form>

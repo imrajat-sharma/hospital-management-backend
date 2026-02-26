@@ -1,0 +1,39 @@
+<h1>Bills</h1>
+<a href="/bills/create" class="btn btn-success mb-3">Create Bill</a>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Patient</th>
+      <th>Appointment</th>
+      <th>Amount</th>
+      <th>Status</th>
+      <th>Method</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% bills.forEach(bill => { %>
+      <tr>
+        <td><%= bill.patient?.name || '-' %></td>
+        <td>
+          <% if (bill.appointment) { %>
+            <%= new Date(bill.appointment.appointmentDate).toLocaleDateString() %> |
+            <%= bill.appointment.doctor?.name || '-' %>
+          <% } else { %>
+            -
+          <% } %>
+        </td>
+        <td><%= bill.amount %></td>
+        <td><%= bill.paymentStatus %></td>
+        <td><%= bill.paymentMethod || '-' %></td>
+        <td>
+          <a href="/bills/edit/<%= bill._id %>" class="btn btn-warning btn-sm">Edit</a>
+          <form action="/bills/delete/<%= bill._id %>" method="POST" style="display:inline;">
+            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>

@@ -1,0 +1,30 @@
+<h1>Doctors</h1>
+<a href="/doctors/create" class="btn btn-success mb-3">Add Doctor</a>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Specialization</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% doctors.forEach(doctor => { %>
+      <tr>
+        <td><%= doctor.name %></td>
+        <td><%= doctor.specialization %></td>
+        <td><%= doctor.phone %></td>
+        <td><%= doctor.email %></td>
+        <td>
+          <a href="/doctors/edit/<%= doctor._id %>" class="btn btn-warning btn-sm">Edit</a>
+          <form action="/doctors/delete/<%= doctor._id %>" method="POST" style="display:inline;">
+            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>

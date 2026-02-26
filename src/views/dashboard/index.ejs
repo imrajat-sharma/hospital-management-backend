@@ -1,0 +1,72 @@
+<h1>Dashboard</h1>
+
+<div class="row g-3 mb-4">
+  <div class="col-md-3"><div class="card"><div class="card-body"><h6>Doctors</h6><h3><%= metrics.doctorCount %></h3></div></div></div>
+  <div class="col-md-3"><div class="card"><div class="card-body"><h6>Patients</h6><h3><%= metrics.patientCount %></h3></div></div></div>
+  <div class="col-md-3"><div class="card"><div class="card-body"><h6>Appointments</h6><h3><%= metrics.appointmentCount %></h3></div></div></div>
+  <div class="col-md-3"><div class="card"><div class="card-body"><h6>Bills</h6><h3><%= metrics.billCount %></h3></div></div></div>
+</div>
+
+<div class="row g-3 mb-4">
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">Appointment Status Grouping</div>
+      <ul class="list-group list-group-flush">
+        <% statusStats.forEach(item => { %>
+          <li class="list-group-item d-flex justify-content-between"><span><%= item._id %></span><strong><%= item.count %></strong></li>
+        <% }) %>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">Doctors by Specialization</div>
+      <ul class="list-group list-group-flush">
+        <% specializationStats.forEach(item => { %>
+          <li class="list-group-item d-flex justify-content-between"><span><%= item._id %></span><strong><%= item.count %></strong></li>
+        <% }) %>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">Payments Grouping</div>
+      <ul class="list-group list-group-flush">
+        <% paymentStats.forEach(item => { %>
+          <li class="list-group-item d-flex justify-content-between"><span><%= item._id %></span><strong><%= item.count %></strong></li>
+        <% }) %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4">
+  <div class="card-header">Revenue Aggregation</div>
+  <div class="card-body">
+    <p class="mb-1">Total: <strong><%= revenue.totalRevenue %></strong></p>
+    <p class="mb-1">Paid: <strong><%= revenue.paidRevenue %></strong></p>
+    <p class="mb-0">Pending: <strong><%= revenue.pendingRevenue %></strong></p>
+  </div>
+</div>
+
+<h4>Recent Appointments (Join/Populate Demo)</h4>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Doctor</th>
+      <th>Patient</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% recentAppointments.forEach(item => { %>
+      <tr>
+        <td><%= new Date(item.appointmentDate).toLocaleString() %></td>
+        <td><%= item.doctor?.name || '-' %></td>
+        <td><%= item.patient?.name || '-' %></td>
+        <td><%= item.status %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
